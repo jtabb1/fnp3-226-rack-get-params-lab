@@ -1,3 +1,5 @@
+# require 'pry'
+
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
@@ -13,6 +15,14 @@ class Application
       end
     elsif req.path.match(/search/)
       search_term = req.params["q"]
+      end_date = req.params["ed"]
+
+      # http://localhost:9292/search/?q=Carrots&ed=20211231
+
+      puts req.path
+      puts search_term
+      puts end_date
+
       resp.write handle_search(search_term)
     elsif req.path.match(/cart/)
       if @@cart.size == 0
